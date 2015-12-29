@@ -6,6 +6,31 @@
 [![Build status][todomvc-model-ci-image] ][todomvc-model-ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 
+## Use
+
+    npm install --save todomvc-model virtual-todos fake-todos virtual-dom
+
+Then create the model and init with some fake or real todos. Pass it to the renderer
+
+```js
+var Todos = require('todomvc-model')
+Todos.item = require('fake-todos')(100)
+var virtualDom = require('virtual-todos')(Todos)
+var createElement = require('virtual-dom/create-element');
+var rootNode = createElement(virtualDom);
+document.body.appendChild(rootNode);
+```
+
+See in [action](http://glebbahmutov.com/hydrate-vdom-todo/), browse 
+[source](https://github.com/bahmutov/hydrate-vdom-todo)
+
+## Related
+
+* [fake-todos](https://github.com/bahmutov/fake-todos) to generate fake todo items
+* [virtual-todos](https://github.com/bahmutov/virtual-todos) for rendering virtual DOM from todos
+* [hydrate-vdom-todo](https://github.com/bahmutov/hydrate-vdom-todo) uses virtual rendering
+  and this model object to implement the full app.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
