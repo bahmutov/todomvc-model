@@ -14,11 +14,11 @@ Then create the model and init with some fake or real todos. Pass it to the rend
 
 ```js
 var Todos = require('todomvc-model')
-Todos.item = require('fake-todos')(100)
+Todos.items = require('fake-todos')(100)
 var virtualDom = require('virtual-todos')(Todos)
-var createElement = require('virtual-dom/create-element');
-var rootNode = createElement(virtualDom);
-document.body.appendChild(rootNode);
+var createElement = require('virtual-dom/create-element')
+var rootNode = createElement(virtualDom)
+document.body.appendChild(rootNode)
 ```
 
 See in [action](http://glebbahmutov.com/hydrate-vdom-todo/), browse 
