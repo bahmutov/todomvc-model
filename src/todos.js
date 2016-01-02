@@ -2,14 +2,18 @@ const la = require('lazy-ass')
 const is = require('check-more-types')
 const uuid = require('./uuid')
 
+function factory (what) {
+  la(is.unemptyString(what), 'expected unempty string', what)
+  return {
+    what: what,
+    done: false,
+    id: uuid()
+  }
+}
+
 var Todos = {
   add: function add (what) {
-    la(is.unemptyString(what), 'expected unempty string', what)
-    Todos.items.unshift({
-      what: what,
-      done: false,
-      id: uuid()
-    })
+    Todos.items.unshift(factory(what))
   },
   mark: function mark (id, done) {
     la(is.unemptyString(id), 'expected id', id)
@@ -28,7 +32,11 @@ var Todos = {
   clearCompleted: function clearCompleted () {
     console.log('clearCompleted not implemented')
   },
-  items: []
+  items: [],
+  utils: {
+    uuid: uuid,
+    factory: factory
+  }
 }
 
 la(is.array(Todos.items), 'expected list of todos', Todos.items)
